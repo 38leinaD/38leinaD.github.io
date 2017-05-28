@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Developer Diary 2017</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <!--link href="css/bootstrap.min.css" rel="stylesheet"-->
+    <link href="css/themes/sandstone.min.css" rel="stylesheet">
+    <link href="css/asciidoctor.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="">dplatz.de</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="archive.html">Archive</a></li>
+            <li><a href="feed.xml">Subscribe</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notes <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="git.html">Git</a></li>
+                <li><a href="maven.html">Maven</a></li>
+                <li><a href="wildfly.html">Wildfly</a></li>
+                
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">	
+	<div class="page-header">
+		<h1>Developer Diary 2017</h1>
+	</div>
+
+	<p><em>01 January 2017</em></p>
+
+	<p><div class="sect1">
+<h2 id="_friday_12_05_2017">Friday, 12.05.2017</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_websphere_liberty_profile_admin_console">Websphere Liberty Profile Admin Console</h3>
+<div class="listingblock">
+<div class="content">
+<pre>$ bin/installUtility install adminCenter-1.0</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">server.xml</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;!-- Enable features --&gt;
+&lt;featureManager&gt;
+    &lt;!-- ... --&gt;
+    &lt;feature&gt;adminCenter-1.0&lt;/feature&gt;
+&lt;/featureManager&gt;
+
+&lt;keyStore id="defaultKeyStore" password="admin123" /&gt;
+
+&lt;basicRegistry id="basic" realm="BasicRealm"&gt;
+    &lt;user name="admin" password="admin123" /&gt;
+&lt;/basicRegistry&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[AUDIT   ] CWWKT0016I: Web application available (default_host): http://localhost:9090/adminCenter/</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_monday_01_05_2017">Monday, 01.05.2017</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://jenkins.io/doc/book/managing/cli/" class="bare">https://jenkins.io/doc/book/managing/cli/</a></p>
+</li>
+<li>
+<p><a href="https://jenkins.io/doc/book/pipeline/jenkinsfile/" class="bare">https://jenkins.io/doc/book/pipeline/jenkinsfile/</a></p>
+</li>
+<li>
+<p><a href="https://jenkins.io/doc/book/pipeline/syntax/#parameters" class="bare">https://jenkins.io/doc/book/pipeline/syntax/#parameters</a></p>
+</li>
+<li>
+<p><a href="https://jenkins.io/blog/2017/01/19/converting-conditional-to-pipeline/" class="bare">https://jenkins.io/blog/2017/01/19/converting-conditional-to-pipeline/</a>
+=== Set up docker as jenkins build slaves</p>
+</li>
+<li>
+<p><a href="http://scriptcrunch.com/enable-docker-remote-api/">Enable</a></p>
+</li>
+<li>
+<p>SSL keys are here: /cygdrive/c/Users/&lt;username&gt;/.docker/machine/machines/default</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> curl --insecure -v --cert cert.pem --key key.pem -X GET https://192.168.99.100:2376/images/json</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://devopscube.com/docker-containers-as-build-slaves-jenkins/" class="bare">https://devopscube.com/docker-containers-as-build-slaves-jenkins/</a></p>
+</li>
+<li>
+<p><a href="https://engineering.riotgames.com/news/jenkins-ephemeral-docker-tutorial" class="bare">https://engineering.riotgames.com/news/jenkins-ephemeral-docker-tutorial</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_saturday_22_04_2017">Saturday, 22.04.2017</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://static.rainfocus.com/oracle/oow16/sess/1462485593256001c2xn/ppt/JavaFX%209%20-%20New%20and%20Noteworthy.pdf">JavaFX 9</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wednesday_19_04_2017">Wednesday, 19.04.2017</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://trustmeiamadeveloper.com/2016/03/18/where-is-my-memory-java/" class="bare">http://trustmeiamadeveloper.com/2016/03/18/where-is-my-memory-java/</a></p>
+</li>
+<li>
+<p><a href="http://blog.jelastic.com/2017/04/13/java-ram-usage-in-containers-top-5-tips-not-to-lose-your-memory/" class="bare">http://blog.jelastic.com/2017/04/13/java-ram-usage-in-containers-top-5-tips-not-to-lose-your-memory/</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p>JDK9 has <code>-XX:+UseCGroupMemoryLimitForHeap</code></p>
+</li>
+<li>
+<p>JDK8: Always specify <code>-Xmx1024m</code> and <code>-XX:MaxMetaspaceSize</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=pNmzT4K9aTw">Bean Validation 2.0</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_friday_24_03_2017">Friday, 24.03.2017</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Nice stash of EJB-spec details: <a href="https://coderanch.com/wiki/659897/OCEEJBD-Links" class="bare">https://coderanch.com/wiki/659897/OCEEJBD-Links</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_monday_20_03_2017">Monday, 20.03.2017</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>looking into JavaEE 8 Security: <a href="https://www.slideshare.net/rdebusscher/what-is-tackled-in-the-java-ee-security-api-java-ee-8" class="bare">https://www.slideshare.net/rdebusscher/what-is-tackled-in-the-java-ee-security-api-java-ee-8</a></p>
+</li>
+<li>
+<p>JavaFX pseudo-classes: <a href="https://rterp.wordpress.com/2015/04/11/atlas-trader-test/" class="bare">https://rterp.wordpress.com/2015/04/11/atlas-trader-test/</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wednesday_15_03_2017">Wednesday, 15.03.2017</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>java in a docker container. <a href="https://developers.redhat.com/blog/2017/03/14/java-inside-docker/">this</a> article explains nicely a problem i had recently&#8230;&#8203;</p>
+</li>
+<li>
+<p>strace on java: <a href="https://blog.packagecloud.io/eng/2017/03/14/using-strace-to-understand-java-performance-improvement/" class="bare">https://blog.packagecloud.io/eng/2017/03/14/using-strace-to-understand-java-performance-improvement/</a></p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>strace -fopen,read,close,fstat java -jar Test.jar</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sunday_05_03_2017">Sunday, 05.03.2017</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>I think it will get the full book: <a href="https://leanpub.com/high-performance-java-persistence/read" class="bare">https://leanpub.com/high-performance-java-persistence/read</a></p>
+</li>
+<li>
+<p>Great talk on how sql is great: <a href="https://www.youtube.com/watch?v=wTPGW1PNy_Y" class="bare">https://www.youtube.com/watch?v=wTPGW1PNy_Y</a></p>
+</li>
+<li>
+<p><a href="https://www.youtube.com/watch?v=4eODK3WS6cM">ScreenPlay: the next stage in automated acceptance testing by John Smart/Jan Molak</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Did a first deploy to Amazon ECS: <a href="https://github.com/38leinaD/aws-playground" class="bare">https://github.com/38leinaD/aws-playground</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_saturday_04_03_2017">Saturday, 04.03.2017</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Adam on integration testing: <a href="http://www.oracle.com/technetwork/articles/java/integrationtesting-487452.html" class="bare">http://www.oracle.com/technetwork/articles/java/integrationtesting-487452.html</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_monday_27_02_2017">Monday, 27.02.2017</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Nice read on debugging webkit: <a href="http://www.saurik.com/id/14" class="bare">http://www.saurik.com/id/14</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_friday_24_02_2017">Friday, 24.02.2017</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://blog-rmannibucau.rhcloud.com/#/post/integrate-third-party-library-cdi-interceptors">Integrate 3rd party library with CDI</a></p>
+</li>
+<li>
+<p>link: <a href="https://lairdnelson.wordpress.com/2017/02/20/blocking-the-cdi-container-politely/" class="bare">https://lairdnelson.wordpress.com/2017/02/20/blocking-the-cdi-container-politely/</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wednesday_22_02_2017">Wednesday, 22.02.2017</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Amazon API Gateway and SSL: <a href="https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-client-side-ssl-authentication.html" class="bare">https://docs.aws.amazon.com/apigateway/latest/developerguide/getting-started-client-side-ssl-authentication.html</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_saturday_18_02_2017">Saturday, 18.02.2017</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Readings on DDD, Event-Sourcing and CQRS:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.infoq.com/articles/microservices-aggregates-events-cqrs-part-1-richardson" class="bare">https://www.infoq.com/articles/microservices-aggregates-events-cqrs-part-1-richardson</a></p>
+</li>
+<li>
+<p><a href="https://www.infoq.com/articles/microservices-aggregates-events-cqrs-part-2-richardson" class="bare">https://www.infoq.com/articles/microservices-aggregates-events-cqrs-part-2-richardson</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Setting up lighttp: <a href="http://bredsaal.dk/using-shell-scripts-for-cgi-in-lighttpd" class="bare">http://bredsaal.dk/using-shell-scripts-for-cgi-in-lighttpd</a></p>
+</div>
+<div class="paragraph">
+<p>Setting up ssl: link:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.makethenmakeinstall.com/2014/05/ssl-client-authentication-step-by-step/" class="bare">http://www.makethenmakeinstall.com/2014/05/ssl-client-authentication-step-by-step/</a></p>
+</li>
+<li>
+<p><a href="https://redmine.lighttpd.net/projects/1/wiki/docs_ssl" class="bare">https://redmine.lighttpd.net/projects/1/wiki/docs_ssl</a></p>
+</li>
+<li>
+<p><a href="https://schnouki.net/posts/2014/08/12/lighttpd-and-ssl-client-certificates/" class="bare">https://schnouki.net/posts/2014/08/12/lighttpd-and-ssl-client-certificates/</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>tshark: wireshark cli interface:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>tshark -i 2 -f 'host 192.168.1.1 and port 80' -Y http</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_thursday_09_02_2017">Thursday, 09.02.2017</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Nice write-up about annotation processors: <a href="http://hannesdorfmann.com/annotation-processing/annotationprocessing101" class="bare">http://hannesdorfmann.com/annotation-processing/annotationprocessing101</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sunday_05_02_2017">Sunday, 05.02.2017</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Sunday readings:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>"CDI “wants” you to know all your values in advance whenever possible": <a href="https://lairdnelson.wordpress.com/2017/02/02/cdi-qualifiers-are-values-part-2/" class="bare">https://lairdnelson.wordpress.com/2017/02/02/cdi-qualifiers-are-values-part-2/</a></p>
+</li>
+<li>
+<p>"Changing Annotations at Startup in CDI 2.0": <a href="https://lairdnelson.wordpress.com/2016/12/15/636/" class="bare">https://lairdnelson.wordpress.com/2016/12/15/636/</a></p>
+</li>
+<li>
+<p>"Tesing CDI with Arquillian": <a href="http://weld.cdi-spec.org/news/2017/02/01/tip4-testing/" class="bare">http://weld.cdi-spec.org/news/2017/02/01/tip4-testing/</a></p>
+</li>
+<li>
+<p>arquillian-container-adapters: <a href="http://arquillian.org/modules/" class="bare">http://arquillian.org/modules/</a></p>
+</li>
+<li>
+<p><a href="https://www.reactivesystems.eu/2017/01/31/things-i-wish-i-knew-when-i-started-building-reactive-systems.html">Things I Wish I Knew When I Started Building Reactive Systems</a></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>You’re going to use sub-thread level concurrency</p>
+</li>
+<li>
+<p>You want to use asynchronous I/O. If you can’t, at least isolate any synchronous I/O (JDBC) from the rest.</p>
+</li>
+<li>
+<p>You don’t want to use distributed transactions, they’re fragile, they’re points of contention.</p>
+</li>
+<li>
+<p>You don’t want to use an application server.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p><a href="http://www.grahamlea.com/2016/08/distributed-transactions-microservices-icebergs/">Distributed Transactions: The Icebergs of Microservices</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_thursday_02_02_2017">Thursday, 02.02.2017</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Playing around with rasperry pi for home automation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Username: pi
+Password: raspberry
+
+sudo raspi-config</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>wifi: <a href="https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md" class="bare">https://www.raspberrypi.org/documentation/configuration/wireless/wireless-cli.md</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_friday_27_01_2017">Friday, 27.01.2017</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Nice reads on annotation processors and java compiler api:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.javacodegeeks.com/2015/09/java-annotation-processors.html" class="bare">https://www.javacodegeeks.com/2015/09/java-annotation-processors.html</a></p>
+</li>
+<li>
+<p><a href="https://www.javacodegeeks.com/2015/09/java-compiler-api.html" class="bare">https://www.javacodegeeks.com/2015/09/java-compiler-api.html</a></p>
+</li>
+<li>
+<p><a href="https://deors.wordpress.com/2011/10/08/annotation-processors/" class="bare">https://deors.wordpress.com/2011/10/08/annotation-processors/</a></p>
+</li>
+<li>
+<p><a href="https://deors.wordpress.com/2011/10/31/annotation-generators/" class="bare">https://deors.wordpress.com/2011/10/31/annotation-generators/</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_thursday_26_01_2017">Thursday, 26.01.2017</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Tracing Weld/CDI under Wildfly:</p>
+</div>
+<div class="listingblock">
+<div class="title">standalone-full.xml</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;logger category="org.jboss.weld"&gt;
+    &lt;level name="TRACE"/&gt;
+&lt;/logger&gt;
+&lt;logger category="org.jboss.as.weld"&gt;
+    &lt;level name="TRACE"/&gt;
+&lt;/logger&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_wednesday_18_01_2017">Wednesday, 18.01.2017</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>So, disabling "Clear Text Font" in windows makes everything look much nice and cleaner :-)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tuesday_17_01_2017">Tuesday, 17.01.2017</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>So, <a href="https://eclipse.org/xtend">xtend</a> looks really interesting. Stumbled upon it while watching <a href="https://vimeo.com/84840897">this</a> on JavaFx.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sunday_08_01_2017">Sunday, 08.01.2017</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Reactive Programming versus Reactive Systems: A nice <a href="http://www.lightbend.com/reactive-programming-versus-reactive-systems?utm_content=buffer4dc32&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">write-up</a> by the lightbend guys.</p>
+</li>
+<li>
+<p><a href="http://iteratrlearning.com/java/2016/12/26/pipes-and-filters-actors-akka-java.html?utm_content=buffer41885&amp;utm_medium=social&amp;utm_source=twitter.com&amp;utm_campaign=buffer">Pipes and Filters EIP within Akka</a>.</p>
+</li>
+<li>
+<p>Started reading <a href="http://docs.aws.amazon.com/lambda/latest/dg/welcome.html">AWS Lambda Development Guide</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_saturday_07_01_2017">Saturday, 07.01.2017</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_bintray">bintray</h3>
+<div class="paragraph">
+<p>Finally singed up for bintray and published <a href="https://bintray.com/38leinad/maven/padersprinter-query">my first artifact</a>. Much nicer to use than sonatype.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://bintray.com/docs/usermanual/uploads/uploads_managinguploadedcontent.html#_gpg_signing">Internet says</a> there is a nice feature for "Signing with the Bintray Key" but i don&#8217;t see to have that option.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>So, had to <a href="http://central.sonatype.org/pages/working-with-pgp-signatures.html">generate</a> my own.</p>
+</li>
+<li>
+<p>To export my keys from gpg:</p>
+<div class="listingblock">
+<div class="content">
+<pre>gpg --armor --export 632B9183
+gpg --armor --export-secret-keys BE07FA4E</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_maven_release_plugin">maven release plugin</h3>
+<div class="paragraph">
+<p>First time doing a release, and thus github might no be in known_hosts, fails with this error:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[ERROR] Failed to execute goal org.apache.maven.plugins:maven-release-plugin:2.5.2:prepare (default-cli) on project padersprinter-query: Unable to tag SCM
+[ERROR] Provider message:
+[ERROR] The git-push command failed.
+[ERROR] Command output:
+[ERROR] ssh_askpass: exec(/usr/sbin/ssh-askpass): No such file or directory
+[ERROR] Host key verification failed.
+[ERROR] fatal: Could not read from remote repository.</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>added to known_hosts by testing on command-line: <code>git ls-remote -h <a href="mailto:git@github.com">git@github.com</a>:38leinaD/padersprinter-query.git HEAD</code></p>
+</div>
+<div class="paragraph">
+<p>So, release:prepare always tagged the SNAPSHOT version because no commit was happening before it. Seems to be a known issue; see link:[stackoverflow]. Tried a lot of version; the only combination that worked was this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;plugins&gt;
+    &lt;plugin&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-release-plugin&lt;/artifactId&gt;
+        &lt;version&gt;2.5.3&lt;/version&gt;
+        &lt;configuration&gt;
+            &lt;tagNameFormat&gt;v@{project.version}&lt;/tagNameFormat&gt;
+        &lt;/configuration&gt;
+        &lt;dependencies&gt;
+            &lt;dependency&gt;
+                &lt;groupId&gt;org.apache.maven.scm&lt;/groupId&gt;
+                &lt;artifactId&gt;maven-scm-provider-gitexe&lt;/artifactId&gt;
+                &lt;version&gt;1.8.1&lt;/version&gt;
+            &lt;/dependency&gt;
+        &lt;/dependencies&gt;
+    &lt;/plugin&gt;
+&lt;/plugins&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Also read the following articles on how to build/release with maven following CI/CD approach. Different but both interesting:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://axelfontaine.com/blog/final-nail.html">Releases with Maven and Git</a></p>
+</li>
+<li>
+<p><a href="http://java.jiderhamn.se/2016/05/04/announcing-maven-promote-plugin/">Maven Promote Plugin</a></p>
+</li>
+<li>
+<p><a href="https://dzone.com/articles/why-i-never-use-maven-release">Why I Never Use the Maven Release Plugin</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Using <a href="https://bitbucket.org/atlassian/jgit-flow/wiki/Home">gitflow plugin</a> for <a href="http://nvie.com/posts/a-successful-git-branching-model/">gitflow</a> see also like a handy plugin.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tuesday_03_01_2017">Tuesday, 03.01.2017</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Read <a href="https://www.gitbook.com/book/thomasnield/rxjavafx-guide/details">Learning RxJava with JavaFX</a>.</p>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2017 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.5.1</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+    
+  </body>
+</html>

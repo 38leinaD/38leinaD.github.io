@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>JBake</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <!--link href="css/bootstrap.min.css" rel="stylesheet"-->
+    <link href="css/themes/sandstone.min.css" rel="stylesheet">
+    <link href="css/asciidoctor.css" rel="stylesheet">
+    <link href="css/base.css" rel="stylesheet">
+    <link href="css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+
+    <!-- Fav and touch icons -->
+    <!--<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">-->
+    <link rel="shortcut icon" href="favicon.ico">
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+	
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="">dplatz.de</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="archive.html">Archive</a></li>
+            <li><a href="feed.xml">Subscribe</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notes <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="git.html">Git</a></li>
+                <li><a href="maven.html">Maven</a></li>
+                <li><a href="wildfly.html">Wildfly</a></li>
+                
+              </ul>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+    <div class="container">
+	<div class="page-header">
+		<h1>notes of a java developer</h1>
+	</div>
+  			<a href="blog/2017/aws-ec2.html"><h1>AWS ECS: Push a docker container</h1></a>
+  			<p>28 May 2017</p>
+  			<p><div class="paragraph">
+<p>Steps to deploy docker containers to AWS EC2:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Created a docker-repository with the name <code>de.dplatz/abc</code>, you will get a page with all the steps and coordinates for <code>docker login</code>, <code>docker tag</code> and <code>docker push</code>.</p>
+</li>
+<li>
+<p>From CLI run:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>aws ecr get-login --region eu-central-1
+docker tag de.dplatz/abc:latest &lt;my-aws-url&gt;/de.dplatz/abc:latest
+docker push &lt;my-aws-url&gt;/de.dplatz/abc:latest</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>See <a href="http://docs.aws.amazon.com/AmazonECS/latest/developerguide/docker-basics.html">here</a> for starting the container.</p>
+</div></p>
+  			<a href="blog/2017/jdk9-httpclient.html"><h1>JDK9 HttpClient</h1></a>
+  			<p>20 May 2017</p>
+  			<p><div class="paragraph">
+<p>Required some clarification from the JDK team how to access the new HttpClient API (which actually is incubating now):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code>$ ./jdk-9_168/bin/jshell --add-modules jdk.incubator.httpclient
+|  Welcome to JShell -- Version 9-ea
+|  For an introduction type: /help intro
+
+jshell&gt; import jdk.incubator.http.*;
+
+jshell&gt; import static jdk.incubator.http.HttpResponse.BodyHandler.*;
+
+jshell&gt; URI uri = new URI("http://openjdk.java.net/projects/jigsaw/");
+uri ==&gt; http://openjdk.java.net/projects/jigsaw/
+
+jshell&gt; HttpRequest request = HttpRequest.newBuilder(uri).build();
+request ==&gt; http://openjdk.java.net/projects/jigsaw/ GET
+
+jshell&gt; HttpResponse response = HttpClient.newBuilder().build().send(request, discard(null));
+response ==&gt; jdk.incubator.http.HttpResponseImpl@133814f
+
+jshell&gt; response.statusCode();
+$6 ==&gt; 200</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I really like the jshell-integration in Netbeans; unfortunately, it does not allow to set commandline-flags for the started shells yet. Filed an <a href="https://netbeans.org/bugzilla/show_bug.cgi?id=270692">issue</a> and got a workaround for now.</p>
+</div></p>
+  			<a href="blog/2017/wlp-admin-console.html"><h1>Websphere Liberty Admin Console</h1></a>
+  			<p>12 May 2017</p>
+  			<p><div class="listingblock">
+<div class="content">
+<pre>$ bin/installUtility install adminCenter-1.0</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">server.xml</div>
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;!-- Enable features --&gt;
+&lt;featureManager&gt;
+    &lt;!-- ... --&gt;
+    &lt;feature&gt;adminCenter-1.0&lt;/feature&gt;
+&lt;/featureManager&gt;
+
+&lt;keyStore id="defaultKeyStore" password="admin123" /&gt;
+
+&lt;basicRegistry id="basic" realm="BasicRealm"&gt;
+    &lt;user name="admin" password="admin123" /&gt;
+&lt;/basicRegistry&gt;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>[AUDIT   ] CWWKT0016I: Web application available (default_host): http://localhost:9090/adminCenter/</pre>
+</div>
+</div></p>
+  			<a href="blog/2017/docker-jvm-params.html"><h1>Docker JVM Memory Settings</h1></a>
+  			<p>01 May 2017</p>
+  			<p><div class="paragraph">
+<p>Read <a href="http://trustmeiamadeveloper.com/2016/03/18/where-is-my-memory-java/">this</a>,
+<a href="http://blog.jelastic.com/2017/04/13/java-ram-usage-in-containers-top-5-tips-not-to-lose-your-memory/">this</a> and
+<a href="https://blogs.oracle.com/java-platform-group/java-se-support-for-docker-cpu-and-memory-limits">this</a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>JDK9 has <code>-XX:+UseCGroupMemoryLimitForHeap</code></p>
+</li>
+<li>
+<p>JDK8 pre 131: Always specify <code>-Xmx1024m</code> and <code>-XX:MaxMetaspaceSize</code></p>
+</li>
+<li>
+<p>JDK8 since 131: <code>-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap</code></p>
+</li>
+</ul>
+</div></p>
+  			<a href="blog/2017/docker-rest-api.html"><h1>Docker Rest API</h1></a>
+  			<p>01 May 2017</p>
+  			<p><div class="paragraph">
+<p>SSL keys are at <code>/cygdrive/c/Users/&lt;username&gt;/.docker/machine/machines/default</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre> curl --insecure -v --cert cert.pem --key key.pem -X GET https://192.168.99.100:2376/images/json</pre>
+</div>
+</div></p>
+  			<a href="blog/2017/strace.html"><h1>strace</h1></a>
+  			<p>01 May 2017</p>
+  			<p><div class="paragraph">
+<p>Read <a href="https://blog.packagecloud.io/eng/2017/03/14/using-strace-to-understand-java-performance-improvement/" class="bare">https://blog.packagecloud.io/eng/2017/03/14/using-strace-to-understand-java-performance-improvement/</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>strace -fopen,read,close,fstat java -jar Test.jar</pre>
+</div>
+</div></p>
+  			<a href="blog/2017/eclipse-stacktrace.html"><h1>Stacktrace in Eclipse Debugger</h1></a>
+  			<p>12 April 2017</p>
+  			<p><div class="paragraph">
+<p>How to see the stacktrace for an exception-variable within the eclipse debugger?</p>
+</div>
+<div class="paragraph">
+<p>Go to Preferences / Java / Debug / Detail Formatter; Add for Throwable:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-java" data-lang="java">java.io.Writer stackTrace = new java.io.StringWriter();
+java.io.PrintWriter printWriter = new java.io.PrintWriter(stackTrace);
+printStackTrace(printWriter);
+return getMessage() + "\n" + stackTrace;</code></pre>
+</div>
+</div></p>
+  			<a href="blog/2017/java-debug-flags.html"><h1>Java debug-flags</h1></a>
+  			<p>22 March 2017</p>
+  			<p><div class="listingblock">
+<div class="content">
+<pre>-Xdebug
+// shared-memory (windows only)
+-agentlib:jdwp=transport=dt_shmem,address=eclipse,server=y,suspend=n
+// socket
+-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=9999</pre>
+</div>
+</div></p>
+  			<a href="blog/2017/inotifywait.html"><h1>inotifywait</h1></a>
+  			<p>07 March 2017</p>
+  			<p><div class="paragraph">
+<p>Monitor filesystem-changes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>while inotifywait -qr /dir/to/monitor; do
+    rsync -avz /dir/to/monitor/ /dir/to/sync/to
+done</pre>
+</div>
+</div></p>
+  			<a href="blog/2017/jar-list.html"><h1>List classes in Jar</h1></a>
+  			<p>29 January 2017</p>
+  			<p><div class="paragraph">
+<p>List all classes in a jar-file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ unzip -l MyJar.jar "*.class" | tail -n+4 | head -n-2 | tr -s ' ' | cut -d ' ' -f5 | tr / . | sed 's/\.class$//'</pre>
+</div>
+</div></p>
+  			<a href="blog/2017/rsync-tricks.html"><h1>rsync tricks</h1></a>
+  			<p>20 January 2017</p>
+  			<p><div class="paragraph">
+<p>This command removes files that have been removed from the source directory but will not overwrite newer files in the destination:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ rsync -avu --delete sourcedir/ /cygwin/e/destdir/</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To rsync to another system with ssh over the net:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ rsync -avu --delete -e ssh sourcedir/ username@machine:~/destdir/</pre>
+</div>
+</div></p>
+  			<a href="blog/2017/shell-alias-expansion.html"><h1>Shell Alias-Expansion</h1></a>
+  			<p>17 January 2017</p>
+  			<p><div class="paragraph">
+<p>Say, you have defined an alias:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ alias gg='git log --oneline --decorate --graph'</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>But when typing 'gg' wouldn&#8217;t it be nice to expand the alias so you can make a small modification to the args?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ gg&lt;Ctrl+Alt+e&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Say, you want to easily clear the screen; there is a shortcut Ctrl+L. But maybe you also always want to print the contents of the current directory: you can rebind the shortcut:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ bind -x '"\C-l": clear; ls -l'</pre>
+</div>
+</div></p>
+  			<a href="blog/2017/java-major.html"><h1>Java Version Strings</h1></a>
+  			<p>16 January 2017</p>
+  			<p><div class="paragraph">
+<p>For what JDK version is a class compiled?</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>$ javap -verbose MyClass.class | grep "major"</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Java 5: major version 49</p>
+</li>
+<li>
+<p>Java 6: major version 50</p>
+</li>
+<li>
+<p>Java 7: major version 51</p>
+</li>
+<li>
+<p>Java 8: major version 52</p>
+</li>
+</ul>
+</div></p>
+  			<a href="blog/2017/ssh-keys.html"><h1>SSH Keys</h1></a>
+  			<p>13 January 2017</p>
+  			<p><div class="paragraph">
+<p>To connect to a remote-host without password-entry (for scripting):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre># generate ssh keys for local (if not already done)
+$ ssh-keygen
+$ ssh-copy-id -i ~/.ssh/id_rsa.pub &lt;remote-host&gt;
+$ ssh &lt;remote-host&gt;</pre>
+</div>
+</div></p>
+  			<a href="blog/2017/maven-fat-and-thin.html"><h1>Maven Fat &amp; Thin Jar</h1></a>
+  			<p>12 January 2017</p>
+  			<p><div class="paragraph">
+<p>Building a fat and a thin jar in one go:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code class="language-xml" data-lang="xml">&lt;plugin&gt;
+    &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+    &lt;artifactId&gt;maven-shade-plugin&lt;/artifactId&gt;
+    &lt;version&gt;2.4.3&lt;/version&gt;
+    &lt;executions&gt;
+        &lt;execution&gt;
+            &lt;phase&gt;package&lt;/phase&gt;
+            &lt;goals&gt;
+                &lt;goal&gt;shade&lt;/goal&gt;
+            &lt;/goals&gt;
+            &lt;configuration&gt;
+                &lt;shadedArtifactAttached&gt;true&lt;/shadedArtifactAttached&gt;
+                &lt;shadedClassifierName&gt;all&lt;/shadedClassifierName&gt;
+                &lt;transformers&gt;
+                    &lt;transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer"&gt;
+                        &lt;mainClass&gt;com.mycompany.myproduct.Main&lt;/mainClass&gt;
+                    &lt;/transformer&gt;
+                &lt;/transformers&gt;
+            &lt;/configuration&gt;
+        &lt;/execution&gt;
+    &lt;/executions&gt;
+&lt;/plugin&gt;</code></pre>
+</div>
+</div></p>
+  			<a href="blog/2017/commandline-http-server.html"><h1>Commandline HTTP-Server</h1></a>
+  			<p>10 January 2017</p>
+  			<p><div class="paragraph">
+<p>A very simple http-server:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>while true ; do echo -e  "HTTP/1.1 200 OK\nAccess-Control-Allow-Origin: *\n\n $(cat index.html)" |  nc -l localhost 1500; done</pre>
+</div>
+</div></p>
+	
+	<hr />
+	
+	<p>Older posts are available in the <a href="archive.html">archive</a>.</p>
+
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2017 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.5.1</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/prettify.js"></script>
+    
+  </body>
+</html>
