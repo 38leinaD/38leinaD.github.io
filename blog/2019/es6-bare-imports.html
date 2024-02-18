@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>How to handle ES6 bare module imports for local Development</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <!--link href="../../css/bootstrap.min.css" rel="stylesheet"-->
+    <link href="../../css/themes/sandstone.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114748485-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-114748485-1');
+    </script>
+    
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+	
+	<!-- Fixed navbar -->  
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+
+  <div class="container">
+    <a class="navbar-brand" href="../../">dplatz.de</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="../../index.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://dplatz.de/aiblog/">AI Blog</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="../../about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="../../archive.html">Archive</a></li>
+        <li class="nav-item"><a class="nav-link" href="../../tags/">Tags</a></li>
+        <li class="nav-item"><a class="nav-link" href="../../feed.xml">Subscribe</a></li>
+        <!--li  class="nav-item dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notes <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="git.html">Git</a></li>
+            <li><a href="wildfly.html">Wildfly</a></li>
+            
+          </ul>
+        </li-->
+
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/38leinaD"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+          </span><span class="username">38leinaD</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/38leinaD"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+          </span><span class="username">38leinaD</span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+	
+	<div class="page-header">
+		<h1>How to handle ES6 bare module imports for local Development</h1>
+	</div>
+
+	<p class="postingdate"><em>26 March 2019</em></p>
+
+	<p><div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+This post has been updated to also include <a href="https://www.pikapkg.com/blog/pika-web-a-future-without-webpack/">Pika</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Note</div>
+</td>
+<td class="content">
+Yet another interesting tool is <a href="https://jspm.org/about/introduction">jspm</a>. Thanks to @hallettj for mentioning it to me.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When prototyping a Javascript-based web-application, I prefer a lightweight approach in which I just have VSCode, the latest Chrome version and <a href="https://www.browsersync.io/">browser-sync</a>. No transpiler, bundler, etc. The browser is refreshed each time I save a file and I get immediate feedback on any CSS, HTML or JavaScript changes I have made.</p>
+</div>
+<div class="paragraph">
+<p>Unfortunately, just using browser-sync does not work as soon as you want to import ES6 modules from third-party. Like, for example, <a href="https://lit-element.polymer-project.org/guide">lit-element</a>.</p>
+</div>
+<div class="paragraph">
+<p>I will show in what cases ES6 imports are not working natively in the browser for external dependencies and show different mechanism to work around it for your development environment.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_problem">Problem</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>An ES6 import will cause problems as soon as you have bare imports. A bare import is one that you usually see when working with bundlers like Webpack: it is not a relative path to your <code>node_modules</code> but&#8230;&#8203; bare.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="javascript">import { html, LitElement } from 'lit-element/lit-element.js';</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And when bundling the application with e.g. Webpack, this would be working fine. But if directly run in the browser, you would see:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="https://i.imgur.com/2EJ5gzy.png" alt="2EJ5gzy">
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Uncaught TypeError: Failed to resolve module specifier "lit-element/lit-element.js". Relative references must start with either "/", "./", or "../".</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>NodeJS supports bare imports and its resolution but browsers do not support it as of now.</p>
+</div>
+<div class="paragraph">
+<p>Now I can try to be smart and change it to a relative import</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="javascript">import { html, LitElement } from './lit-element/lit-element.js';</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and make browser-sync serve files from the <code>node_modules</code> directory as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>browser-sync src node_modules -f src --cors --no-notify</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>I will get a different but similar error.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Uncaught TypeError: Failed to resolve module specifier "lit-html". Relative references must start with either "/", "./", or "../".</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Even though I was no able to import <code>lit-element</code>, it is now choking on <code>lit-html</code> which is a bare import in the <code>lit-element</code> sources itself.
+So, it seems we are stuck as any external library that contains ES6 imports will fail if the imports are not first rewritten like Webpack will do.</p>
+</div>
+<div class="paragraph">
+<p>Got here and search for <a href="https://jakearchibald.com/2017/es-modules-in-browsers/">"Bare" import specifiers aren&#8217;t currently supported</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_solutions">Solutions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Here are the solutions I have found when my main requirement is to keep a good developer experience like I have with browser-sync alone (lean and simple).</p>
+</div>
+<div class="sect2">
+<h3 id="_unpkg_com">Unpkg.com</h3>
+<div class="paragraph">
+<p>Unpkg acts like a CDN and offers popular NPM packages via http. The nice thing is that bare imports are rewritten.
+So, changing the import to this will work fine:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="javascript">import { html, LitElement } from 'https://unpkg.com/@polymer/lit-element@latest/lit-element.js?module';</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>?module</code> does the magic of rewriting bare imports.</p>
+</div>
+<div class="paragraph">
+<p>I can now continue working with browser-sync like before:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>browser-sync src -f src --cors --no-notify</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The downside of this approach is that the application is not local/self-contained; I have to fetch something from the internet; which can be bad if your internet speed is slow. Actually, it will be cached; but it will hit the internet anyway for cache-validation.
+Also, this will not work if you are trying to work offline.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_webpack">Webpack</h3>
+<div class="paragraph">
+<p>As mentioned before, a bundler sloves the import problem for us by inlining or rewriting the imports.
+But I am no fan of this approach as this bundling step can slow down the turn-around time from saving the file to the browser actually reloading.
+Anyway, the steps are:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>`npm install --save-dev webpack webpack-cli copy-webpack-plugin webpack-dev-server `</p>
+</li>
+<li>
+<p>Create <code>webpack.config.js</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="javascript">const path = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
+
+module.exports = {
+    entry: './src/app.js',
+    mode: 'development',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'app.js'
+    },
+    devServer: {
+        contentBase: './dist'
+    },
+    plugins: [
+        new CopyPlugin([
+            { from: 'src/index.html', to: './' },
+            { from: 'src/style.css', to: './' },
+        ]),
+    ],
+};</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add a script to the <code>package.json</code>: <code>"dev": "webpack-dev-server --open"</code></p>
+</li>
+<li>
+<p>The import can now look like this:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="javascript">import { html, LitElement } from 'lit-element/lit-element.js';</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Run the dev-server with live-reload (similar to browser-sync) with <code>npm run dev</code>.</p>
+</div>
+<div class="paragraph">
+<p>After trying it for a small application and really only doing the bare minimum with Webpack, I have to say it is a viable option.
+But it requires to download some dependencies from NPM and create a <code>webpack.config.js</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_open_web_components_owc">Open Web Components (OWC)</h3>
+<div class="paragraph">
+<p><a href="https://open-wc.org/developing/owc-dev-server.html">Open Web Components</a> offer a simple dev-server that does nothing more than rewrite the bar module imports to relative imports.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>npm install --save-dev owc-dev-server</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After trying it out, I was disappointed to find that the dev-server does not offer live-reloading.</p>
+</div>
+<div class="paragraph">
+<p>The best solution I found was to combine it with browser-sync.
+Here are the scripts I added to my <code>package.json</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>"dev": "owc-dev-server | npm run watch",
+"watch": "browser-sync start -f src/ --proxy localhost:8080 --startPath src",</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that <code>watch</code> is just a helper-script used by <code>dev</code>; so you have to use <code>npm run dev</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_polymer_cli">Polymer-cli</h3>
+<div class="paragraph">
+<p>The last tool I tried was Polymer-CLI.
+In the end, the approach is a mix between the previous two. It requires an additional <code>polymer.json</code> config-file and it also does not function without browser-sync.</p>
+</div>
+<div class="paragraph">
+<p>The steps are:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>npm install --save-dev polymer-cli</code></p>
+</li>
+<li>
+<p>Create <code>polymer.json</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="javascript">{
+    "entrypoint": "src/index.html",
+    "shell": "src/app.js",
+    "npm": true
+}</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Set up scripts:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="javascript">"watch": "browser-sync start -f src/ --proxy localhost:8000 --startPath src",
+"dev": "polymer serve --open-path src/index.html | npm run watch"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>See here for the <a href="https://github.com/Polymer/tools/issues/2134">issue</a> to natively support live-reload.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pika">Pika</h3>
+<div class="paragraph">
+<p>One more nice tool was mentioned to me in the reactions to this post. So, I felt inclined to try it and after all also include it here.</p>
+</div>
+<div class="paragraph">
+<p>What <code>@pika/web</code> does, is described nicely in <a href="https://www.pikapkg.com/blog/pika-web-a-future-without-webpack/">this article</a>. It actually is a great addition to my post because it adds to the same discussion that you should not be required to use bundlers just to get all the webcomponents / ES6 goodness working.</p>
+</div>
+<div class="paragraph">
+<p>Pika moves the bundling step from where you have to run the bundler for your application, to just running a bundler/tool once for each installed dependency in your <code>package.json</code>.
+I.e. what it does is take your dependencies from <code>node_modules</code> and repackages/bundles them under the folder <code>web_modules</code>. The repackaged dependency no longer contains bare imports and can easily be include. Just run</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>npm install &amp;&amp; npx @pika/web</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now, you could import like below and continue using browser-sync.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>import { html, LitElement } from './web_modules/lit-element.js';</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that I don&#8217;t like having to put <code>web_modules</code> in the path. So what I ended up doing was importing like this</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>import { html, LitElement } from './lit-element.js';</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and just let browser-sync serve from <code>src</code> and <code>web_modules</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>browser-sync src web_modules -f src --cors --no-notify</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_summary">Summary</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After trying out all these options, I have to say that non is as lightweight and simple as using plain browser-sync.</p>
+</div>
+<div class="paragraph">
+<p>I can work with the Webpack and the OCW approaches. Webpack is a standard tool to learn anyway. And OCW has a lightweight dev-serverthat just rewrites the imports on the fly; no bundling step. But sadly, it does not come with live-reload out of the box and requries to combine it with browser-sync. Polymer-CLI is just to heavyweight for what I need from it (also requiring a config-file) and unpkg.com is no option as I want to be able to work offline.</p>
+</div>
+<div class="paragraph">
+<p>Pika was only added after I intially wrote this post. But I will keep trying it in the next way. From the first impression, I have to say that I really like that I can just continue using plain browser-sync.</p>
+</div>
+<div class="paragraph">
+<p>As the dependency on other libraries via ES6 imports will only get more important, I am eagerly awaiting a solution. Maybe <a href="https://github.com/WICG/import-maps">import-maps</a> will the way to go.</p>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+	<script src="https://giscus.app/client.js"
+        data-repo="38leinaD/38leinaD.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk1NjkyNDIzOA=="
+        data-category="Q&A"
+        data-category-id="DIC_kwDOA2SYTs4CcH2P"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+	</script>
+	<br/>
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2018 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.7.0-rc.7</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/popper.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/prettify.js"></script>
+    <script src="../../js/custom.js"></script>
+  </body>
+</html>
