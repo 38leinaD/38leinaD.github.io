@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>JavaEE App Deployment on Openshift/Minishift</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <!--link href="../../css/bootstrap.min.css" rel="stylesheet"-->
+    <link href="../../css/themes/sandstone.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114748485-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-114748485-1');
+    </script>
+    
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+	
+	<!-- Fixed navbar -->  
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+
+  <div class="container">
+    <a class="navbar-brand" href="../../">dplatz.de</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="../../index.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://dplatz.de/aiblog/">AI Blog</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="../../about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="../../archive.html">Archive</a></li>
+        <li class="nav-item"><a class="nav-link" href="../../tags/">Tags</a></li>
+        <li class="nav-item"><a class="nav-link" href="../../feed.xml">Subscribe</a></li>
+        <!--li  class="nav-item dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notes <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="git.html">Git</a></li>
+            <li><a href="wildfly.html">Wildfly</a></li>
+            
+          </ul>
+        </li-->
+
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/38leinaD"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+          </span><span class="username">38leinaD</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/38leinaD"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+          </span><span class="username">38leinaD</span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+	
+	<div class="page-header">
+		<h1>JavaEE App Deployment on Openshift/Minishift</h1>
+	</div>
+
+	<p class="postingdate"><em>23 June 2019</em></p>
+
+	<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>I have been watching <a href="https://www.redhat.com/en/events/webinar/cloud-native-java-application-development-video-series">this free course by RedHat</a> to get started on OpenShift.
+This post contains my personal notes on the most important commands and concepts for later reference.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_getting_started_with_minishift">Getting started with MiniShift</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I already wanted to do the course a few month back on my laptop running CentOS linux; but for some reason I ran into problems installing MiniShift.
+After reinstalling my laptop with Debian, I gave it another go.
+There have been a few small problems that cost me some time along the way and I will describe them as well</p>
+</div>
+<div class="paragraph">
+<p>After installing Minishift (which is a local OpenShift cluster running in a VM), the intial steps are simple:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>minishift start // starts the cluster
+eval $(minishift oc-env) // to connect the oc commandline-tool from OpenShift to the local cluster
+oc login -u developer // log into the OpenShift cluster via the oc commandline-tool; password can be anything non-empty</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Essentially OpenShift runs your applications in Kubernetes (MiniShift uses minikube) and Docker; so this is what <code>minishift start</code> will boot up in a VM. Read more about it <a href="https://docs.okd.io/latest/minishift/using/basic-usage.html">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>You can open the OpenShift web-console with <code>minishift console</code> and log in with user <code>developer</code> and any non-empty password. We can use it later to inspect the deployed applications and see the logs of the running containers; even connecting to a shell within the container can be done via the web console.</p>
+</div>
+<div class="paragraph">
+<p>This is also a good place to introduce the concept of projects in OpenShift. Actually, there is also the concept of projects in Minishift, but with <code>minishift start</code> a default project named <code>minishift</code> is created and I usually get along with this single project quiet good.
+For the OpenShift project this is different. You should use a single project for deploying all your modules/microservices that make up your application. So, if you are working on different customer-projects, it would be natural to also define different projects in OpenShift for it.</p>
+</div>
+<div class="paragraph">
+<p>Here, I will be working with a project named <code>junk</code>. It is created and activated via</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>oc new-project junk</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is important later on, because Docker images we build need to be tagged with the project-name for OpenShift beeing able to use them.</p>
+</div>
+<div class="paragraph">
+<p>Also, note that once you stop and start MiniShift, the default OpenShift project might be active (check with <code>oc projects</code>) and you will have to run <code>oc project junk</code> to activate <code>junk</code>; otherwise it might happen that <code>oc</code> commands interacte with the wrong project.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_building_and_deploy_from_source_via_s2i_and_templates">Building and deploy from source via S2I and templates</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The most prominent approach for deploying your application on OpenShift is via Source-2-Image.
+What this means is that effectively your application is built from sources (Maven, Gradle, &#8230;&#8203;) within a Docker container. The resulting artifact (e.g. WAR-file) is then put in another Docker container (e.g. Wildfly) to start the application.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, there is the concept of templates. These templates and their parameters are documented in a good way so that you basically only have the point the template to a Git Repo URL containing a Maven build. The template will do the job of building and deploying the artifact.</p>
+</div>
+<div class="paragraph">
+<p>Minishift does not come with templates for JBoss/Wildfly preinstalled. But you can easily add a JBoss EAP 7 template by running</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>oc replace --force -f https://raw.githubusercontent.com/jboss-openshift/application-templates/master/eap/eap71-basic-s2i.json</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can inspect the template parameters with</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>oc describe template eap71-basic-s2i</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Lets launch a simple Maven-based JavaEE project via the JBoss EAP 7 template:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>oc new-app --template=eap71-basic-s2i -p SOURCE_REPOSITORY_URL=https://github.com/AdamBien/microservices-on-openshift.git -p CONTEXT_DIR=micro -p SOURCE_REPOSITORY_REF=master --name=micro</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This approach works quiet nicely, but as you would normally build your application on a Jenkins or similar build-server, the approach seems not so useful for serious projects.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deploy_via_image_streams">Deploy via Image Streams</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>From now on we assume the JavaEE WAR/EAR was built via Gradle/Maven on Jenkins and we only want to use OpenShift to deploy it.
+For this we can use the concept of Image Streams. Essentially, it is just another abstraction on top of Docker.
+As tags like <code>latest</code> (or even specific versions) can be overwritten in a Docker registry, Image Streams give Docker images a handle that can be used today or tomorrow even when the version was overwritten.
+To be concrete: You deploy your application on a docker image <code>appserver:latest</code>, the Image Stream in OpenShift will make sure to always take the same Docker image for deployment even when containers are built after <code>latest</code> already points to a new image. The handle will only be updated when you proactively decide so. This allows reproduceable build/deployments and removes the level of suprise when a new deployment is pushed to production on a Friday afternoon.</p>
+</div>
+<div class="paragraph">
+<p>To demonstrate the steps, I will be using the demo repo from the course but please note that it could be any other Maven/Gradle-based project that produces a JavaEE WAR/EAR-file.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>git clone https://github.com/AdamBien/microservices-on-openshift.git
+cd microservices-on-openshift/micro
+mvn package</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This should have produced a <code>micro.war</code> under the <code>microservices-on-openshift/micro/target</code> folder.</p>
+</div>
+<div class="paragraph">
+<p>Lets first check what Image Streams OpenShift knows about (you can also reference images from DockerHub or your local docker registry but more on that later):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>oc get is -n openshift</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s define an application using the <code>wildfly</code> image-stream.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>oc new-app wildfly:latest~/tmp --name=micro</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The trick used by Adam here is to give <code>/tmp</code> or some other empty folder to the command because we don&#8217;t want OpenShift to build our application. Normally, you would give the path to a Git Repo or a folder containing a <code>pom.xml</code>. In this case, OpenShift would do the build from source again.</p>
+</div>
+<div class="paragraph">
+<p>Instead, we use the <code>oc start-build</code> command and give the already built artifact:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>oc start-build micro --from-file=target/micro.war</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To expose the application to the outside world via a load-balancer, run</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>oc expose svc micro</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the web-console you should be able to go to your project and under it to <code>Applications/Routes</code>. Here you will find a link to access you applications HTTP port.
+The URL to access the Rest endpoint should look similar to this: <a href="http://micro-junk.192.168.42.3.nip.io/micro/resources/ping" class="bare">http://micro-junk.192.168.42.3.nip.io/micro/resources/ping</a>.</p>
+</div>
+<div class="sect2">
+<h3 id="_dns_issues">DNS issues</h3>
+<div class="paragraph">
+<p>A problem that bugged me for some time was the concept of the <code>nip.io</code> domain and that DNS servers should resolve it to the IP given as subdomain.
+It would not have been a problem if my system was set up to use e.g. the Google DNS servers. Instead, on my Debian/local network, there is some local DNS server and it was not able to resolve the <code>nip.io</code> domain.</p>
+</div>
+<div class="paragraph">
+<p>To make it work, I had to set up the Google DNS servers on my system. Namely, <a href="8.8.8.8" class="bare">8.8.8.8</a> and <a href="8.8.4.4" class="bare">8.8.4.4</a>. After this, I was able to call the Rest endpoint.</p>
+</div>
+<div class="sect3">
+<h4 id="_local_dns">Local DNS</h4>
+<div class="paragraph">
+<p>For some time I also played around with a local DNS server coming as an experimental feature, but I moved away from it again because it was not really necessary.
+Anyway, below are the steps if you want to try it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>export MINISHIFT_ENABLE_EXPERIMENTAL=y
+minishift start
+minishift dns start
+patch /etc/resolv.conf</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deleting_resources">Deleting resources</h3>
+<div class="paragraph">
+<p>As you are playing around in OpenShift, it is often useful to start from scratch again. Actually, we should do it to demonstrate a different approach to deploy our application.
+All resources in OpenShift are labeled with the application-name (<code>oc get all -l app=micro</code>). So, in our case, we can delete our application and all its resources by running</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>oc delete all -l app=micro</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_image_stream_from_own_docker_image">Image Stream from own Docker image</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>I assume you have run the <code>oc delete</code> command because we now want to deploy our micro application again, but in a different way: deployed in a Docker container that we have built ourselfs.
+I.e. we want to use our own Docker images within OpenShift&#8217;s concept of Image Streams.</p>
+</div>
+<div class="paragraph">
+<p>First, we need to connect our Docker client to the Docker runtime in MiniShift:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>eval $(minishift docker-env)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Try <code>docker ps</code> now and you should see all the Docker containers running in your OpenShift environment.</p>
+</div>
+<div class="paragraph">
+<p>We can now do a <code>docker build</code> as usual; we just have to make sure to tag it correctly.
+As OpenShift exposes a Docker registry, we need to tag the image for this registry (we can get it from <code>minishift openshift registry</code>); and additionally, there is the convention that the image-name need to include the name of the OpenShift project and the application-name. So, the full build-command looks liḱe this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>docker build -t $(minishift openshift registry)/junk/micro .
+docker login -u developer -p $(oc whoami -t) $(minishift openshift registry)
+docker push $(minishift openshift registry)/junk/micro
+oc new-app --image-stream=micro
+oc expose svc micro
+oc status</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_important_concepts">Important concepts</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Below are some more important concepts for deploying applications to the cloud and the respective commands.</p>
+</div>
+<div class="sect2">
+<h3 id="_scale">Scale</h3>
+<div class="paragraph">
+<p>You can scale the number of replicas/containers with below command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>oc scale --replicas=2 dc ping
+oc get all</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As OpenShift exposes your service via a load-balancer, this is completely transparent and you might be routed to any of the started containers.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration">Configuration</h3>
+<div class="paragraph">
+<p>In Java you can access environment variables via <code>System.getenv</code>.
+This is a standard mechanism to configure you application in cloud-native applications.
+Below is the command to set such an environment variable for your service.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>oc set env dc/ping --list
+oc set env dc/ping message='Hello World'</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>What will happen, is that OpenShift restarts all containers and places the new config in the environment.</p>
+</div>
+<div class="paragraph">
+<p>You application will now get <code>Hello World</code> when invoking <code>System.getenv("message")</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_health_check">Health check</h3>
+<div class="paragraph">
+<p>Every application should define some external health-check endpoint.
+This allows external tools or e.g. OpenShift to monitor the state of the application.
+For this, Kubernetes defines two different health-checks.
+Readyness probes to test if the application is ready/started; and liveness probes to test if the application is still alive and responding.
+Below are the commands to set each. You Rest-service simply needs to respond with HTTP responce-code 200 is everything is fine; 500 in case to indicate the opposite.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>oc set probe dc/ping --liveness --get-url=http://:8080/ping/resources/health
+oc set probe dc/ping --readiness --get-url=http://:8080/ping/resources/health</pre>
+</div>
+</div>
+</div>
+</div>
+</div></p>
+
+	<hr />
+
+	<script src="https://giscus.app/client.js"
+        data-repo="38leinaD/38leinaD.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk1NjkyNDIzOA=="
+        data-category="Q&A"
+        data-category-id="DIC_kwDOA2SYTs4CcH2P"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+	</script>
+	<br/>
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2018 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.7.0-rc.7</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/popper.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/prettify.js"></script>
+    <script src="../../js/custom.js"></script>
+  </body>
+</html>
