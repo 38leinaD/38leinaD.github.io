@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <title>Quarkus - OIDC - Offering a Login button</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="keywords" content="">
+    <meta name="generator" content="JBake">
+
+    <!-- Le styles -->
+    <!--link href="../../css/bootstrap.min.css" rel="stylesheet"-->
+    <link href="../../css/themes/sandstone.css" rel="stylesheet">
+    <link href="../../css/asciidoctor.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link href="../../css/prettify.css" rel="stylesheet">
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="../../js/html5shiv.min.js"></script>
+    <![endif]-->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114748485-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-114748485-1');
+    </script>
+    
+  </head>
+  <body onload="prettyPrint()">
+    <div id="wrap">
+	
+	<!-- Fixed navbar -->  
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-primary">
+
+  <div class="container">
+    <a class="navbar-brand" href="../../">dplatz.de</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="../../index.html">Blog</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://dplatz.de/aiblog/">AI Blog</a></li>
+
+        <li class="nav-item"><a class="nav-link" href="../../about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="../../archive.html">Archive</a></li>
+        <li class="nav-item"><a class="nav-link" href="../../tags/">Tags</a></li>
+        <li class="nav-item"><a class="nav-link" href="../../feed.xml">Subscribe</a></li>
+        <!--li  class="nav-item dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Notes <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+            <li><a href="git.html">Git</a></li>
+            <li><a href="wildfly.html">Wildfly</a></li>
+            
+          </ul>
+        </li-->
+
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/38leinaD"><span class="icon icon--github"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/></svg>
+          </span><span class="username">38leinaD</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/38leinaD"><span class="icon icon--twitter"><svg viewBox="0 0 16 16" width="16px" height="16px"><path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/></svg>
+          </span><span class="username">38leinaD</span></a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+	
+	<div class="page-header">
+		<h1>Quarkus - OIDC - Offering a Login button</h1>
+	</div>
+
+	<p class="postingdate"><em>02 April 2021</em></p>
+
+	<p><div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Quarkus offers an integration with OpenIdConnect (OIDC). This means, you can use indentity providers like Keycloak, ForgeRock or AWS Cognito to delegate your authentication needs. With Keycloak, you can also have identity brokering with other identity providers. This means, people can sign up with your application/service via Keycloak directly or people can also select an option like "Login with GitHub".</p>
+</div>
+<div class="paragraph">
+<p>For the general usage of OIDC with Quarkus, please refer to <a href="https://quarkus.io/guides/security-openid-connect-web-authentication">this guide</a>. My post is about the specific need of offering a Login-button in your application; which I would have thought to be an out of the box feature. Don&#8217;t get me wrong; this is not hard to achieve, but also not trivial and well documented.</p>
+</div>
+<div class="paragraph">
+<p>My general setup is a Quarkus application with server-side-rendered Web frontend. This may be JSF (the Quarkus Universe offers a MyFaces extension), but for me it was using the more lightweight <a href="https://quarkus.io/guides/qute-reference">Qute template library</a>; which feels more like Spring MVC with Thymeleaf.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_problem_statement">Problem Statement</h3>
+<div class="paragraph">
+<p>So, what exactly do we want? If a user is not logged in, there should be a Login-button. Once this button is pressed, the user should be redirected to the identity provider&#8217;s login page. Once the login is done, I would like to redirect the user to same URL he was coming from. I.e. the user might be browsing a specific page or product in the catalog and decides to log in.</p>
+</div>
+<div class="paragraph">
+<p>The thing with offering a login button is that there is no URL to the login page. The redirects to the identity provider happen in Quarkus internally by intercepting the requests and checking if a URL is protected or not. If a URL is protected and there is not valid Access Token already exchanged, the login is triggered.
+Also, in my case, most pages are not really protected but can be accessed by a unauthenticated as well as by a logged in user. The difference is just what actions are possible on the page.</p>
+</div>
+<div class="paragraph">
+<p>This is the basic configuration for OIDC with Keycloak as my identity provider. You see, that <code>quarkus.http.auth.permission.permit1</code> gives full access all URLs also users that are not logged in.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>quarkus.oidc.enabled=true
+quarkus.oidc.auth-server-url=http://localhost:8180/auth/realms/quarkus
+quarkus.oidc.client-id=frontend
+quarkus.oidc.application-type=web_app
+quarkus.oidc.logout.path=/logout
+quarkus.oidc.logout.post-logout-path=/
+quarkus.oidc.token.refresh-expired=true
+quarkus.oidc.authentication.session-age-extension=30M
+
+quarkus.http.auth.permission.permit1.paths=/*
+quarkus.http.auth.permission.permit1.policy=permit
+quarkus.http.auth.permission.permit1.methods=GET,POST</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_solution">Solution</h3>
+<div class="paragraph">
+<p>The way to offer a login button is by registering a URL/endpoint that is actually protected:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>quarkus.http.auth.permission.authenticated.paths=/login
+quarkus.http.auth.permission.authenticated.policy=authenticated</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This URL is not provided by Quarkus but needs to be provided by ourselfs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="java">@Path("/")
+public class IndexResource {
+
+    // Other methods...
+
+    @GET
+    @Path("login")
+    public Response login(@QueryParam("redirect") String redirect) {
+        return Response.temporaryRedirect(URI.create(redirect)).build();
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>On my HTML page (Qute template), I offer a login button like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="prettyprint highlight"><code data-lang="html">&lt;a class="button is-light" href="javascript:location.href='/login?redirect=' + encodeURIComponent(location.href)"&gt;
+    Login
+&lt;/a&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>How exactly does this work when the user presses the Login button?</p>
+</div>
+<div class="paragraph">
+<p>The Login button will send a GET request for the page <code>/login?redirect=&#8230;&#8203;</code>. The GET request contains a <code>redirect=&#8230;&#8203;</code> query parameter with the URL of the currently open page. The redirect is so after the login we can get back to this page.
+Quarkus will notice from the config <code>quarkus.http.auth.permission.permit1</code> that <code>/login</code> is protected. If the user is not logged in, we will be redirected to the Keycloak login page. Once the login is done, Keycloak will redirect to the <code>/login</code> page. This will invoke our <code>IndexResource.login</code> method, where we will again redirect to the <code>redirect</code> parameter URL; bringing us back to the initial page the user pressed the Login button on. He is now logged in.</p>
+</div>
+<div class="paragraph">
+<p>I hope the process is clear and it helps others to implement the same flow. To me, it looked like this is not very well documented and it felt to me like I had to come up with this solution myself and get confirmation that this was indeed the right approach.</p>
+</div>
+</div></p>
+
+	<hr />
+
+	<script src="https://giscus.app/client.js"
+        data-repo="38leinaD/38leinaD.github.io"
+        data-repo-id="MDEwOlJlcG9zaXRvcnk1NjkyNDIzOA=="
+        data-category="Q&A"
+        data-category-id="DIC_kwDOA2SYTs4CcH2P"
+        data-mapping="pathname"
+        data-strict="0"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="en"
+        crossorigin="anonymous"
+        async>
+	</script>
+	<br/>
+		</div>
+		<div id="push"></div>
+    </div>
+    
+    <div id="footer">
+      <div class="container">
+        <p class="muted credit">&copy; 2018 | Mixed with <a href="http://getbootstrap.com/">Bootstrap v3.1.1</a> | Baked with <a href="http://jbake.org">JBake v2.7.0-rc.7</a></p>
+      </div>
+    </div>
+    
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/popper.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/prettify.js"></script>
+    <script src="../../js/custom.js"></script>
+  </body>
+</html>

@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+    <url>
+    	<loc>http://dplatz.de/about.html</loc>
+    	<lastmod>2025-06-29</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/diary-2025.html</loc>
+    	<lastmod>2025-01-01</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/diary-2024.html</loc>
+    	<lastmod>2024-01-01</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/vscode.html</loc>
+    	<lastmod>2018-01-24</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/diary-2018.html</loc>
+    	<lastmod>2018-01-01</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/maven.html</loc>
+    	<lastmod>2017-01-10</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/git.html</loc>
+    	<lastmod>2017-01-10</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/wildfly.html</loc>
+    	<lastmod>2017-01-10</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/diary-2017.html</loc>
+    	<lastmod>2017-01-01</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/diary-2016.html</loc>
+    	<lastmod>2016-01-01</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2025/idea-wsl.html</loc>
+    	<lastmod>2025-06-29</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2024/langchain4j-ollama.html</loc>
+    	<lastmod>2024-01-01</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2023/jupyter-diary.html</loc>
+    	<lastmod>2023-11-21</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2023/aws-cdk-eks-alb.html</loc>
+    	<lastmod>2023-09-17</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2022/webstandards-with-rollup.html</loc>
+    	<lastmod>2022-10-16</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2022/aws-rds-iam.html</loc>
+    	<lastmod>2022-08-06</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2021/quarkus-oidc-login.html</loc>
+    	<lastmod>2021-04-02</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2021/aws-cdk.html</loc>
+    	<lastmod>2021-03-01</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2021/firestarter.html</loc>
+    	<lastmod>2021-02-17</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2020/quarkus-system-out-logging.html</loc>
+    	<lastmod>2020-11-14</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2020/gradle-cache-files.html</loc>
+    	<lastmod>2020-09-25</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2020/quarkus-custom-cdi-scope.html</loc>
+    	<lastmod>2020-09-11</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2020/jitpack-and-gradle-plugin-fix.html</loc>
+    	<lastmod>2020-06-29</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2020/async-profiler.html</loc>
+    	<lastmod>2020-05-02</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2020/quarkus-native-image-windows.html</loc>
+    	<lastmod>2020-04-26</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2020/quarkus-test-against-master.html</loc>
+    	<lastmod>2020-04-13</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2020/quarkus-debug-test-under-gradle.html</loc>
+    	<lastmod>2020-04-11</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2020/quarkus-graalvm-reflection.html</loc>
+    	<lastmod>2020-04-10</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2020/using-java-preview-features-in-gradle-project.html</loc>
+    	<lastmod>2020-03-01</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2019/improved-integration-testing.html</loc>
+    	<lastmod>2019-09-04</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2019/history-based-routing.html</loc>
+    	<lastmod>2019-08-26</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2019/openshift-starter.html</loc>
+    	<lastmod>2019-06-23</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2019/useful-wildfly-undertow-config.html</loc>
+    	<lastmod>2019-05-21</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2019/emojis-for-java-commandline.html</loc>
+    	<lastmod>2019-03-31</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2019/es6-bare-imports.html</loc>
+    	<lastmod>2019-03-26</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2019/jsf-myfaces-viewstate.html</loc>
+    	<lastmod>2019-03-11</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2019/sublime-lsp.html</loc>
+    	<lastmod>2019-03-03</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2019/gradle-arquillian-webdriver.html</loc>
+    	<lastmod>2019-03-01</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2019/watch-and-do-script.html</loc>
+    	<lastmod>2019-02-17</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/gradle-arquillian-chameleon-contribution.html</loc>
+    	<lastmod>2018-12-23</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/java-hot-code-swapping.html</loc>
+    	<lastmod>2018-12-21</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/heroku.html</loc>
+    	<lastmod>2018-11-01</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/graal-native-app.html</loc>
+    	<lastmod>2018-10-20</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/gradle-apt.html</loc>
+    	<lastmod>2018-10-14</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/single-source-scripts-jep330.html</loc>
+    	<lastmod>2018-09-24</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/openjfx.html</loc>
+    	<lastmod>2018-09-23</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/kumuluzee.html</loc>
+    	<lastmod>2018-09-09</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/self-contained-jee-app.html</loc>
+    	<lastmod>2018-06-25</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/gradle-checkstyle-2.html</loc>
+    	<lastmod>2018-06-23</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/gradle-arquillian-chameleon-improved-again.html</loc>
+    	<lastmod>2018-06-11</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/wlp-eclipselink-cache-coordination.html</loc>
+    	<lastmod>2018-06-04</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/kubernetes-on-google.html</loc>
+    	<lastmod>2018-05-30</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/wlp-eclipselink-logging.html</loc>
+    	<lastmod>2018-05-14</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/gradle-docker-compose-integration-testing.html</loc>
+    	<lastmod>2018-05-06</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/microprofile-metrics.html</loc>
+    	<lastmod>2018-04-11</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/was-autodeploy.html</loc>
+    	<lastmod>2018-04-10</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/gradle-arquillian-chameleon-improved.html</loc>
+    	<lastmod>2018-04-07</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/wlp-derby.html</loc>
+    	<lastmod>2018-03-13</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/gradle-arquillian-wlp.html</loc>
+    	<lastmod>2018-03-12</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/gradle-arquillian-wildfly.html</loc>
+    	<lastmod>2018-02-28</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/gradle-arquillian-chameleon.html</loc>
+    	<lastmod>2018-02-26</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/redeploy.html</loc>
+    	<lastmod>2018-02-25</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/gradle-arquillian-webdriver.html</loc>
+    	<lastmod>2018-02-24</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/gradle-checkstyle.html</loc>
+    	<lastmod>2018-01-30</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/wlp-jee8.html</loc>
+    	<lastmod>2018-01-22</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/wlp-debug.html</loc>
+    	<lastmod>2018-01-21</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2018/gradle-wlp-deploy.html</loc>
+    	<lastmod>2018-01-20</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/rest-security-basic.html</loc>
+    	<lastmod>2017-10-31</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/github-fork.html</loc>
+    	<lastmod>2017-10-05</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/was-jvisualvm-jmx.html</loc>
+    	<lastmod>2017-09-25</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/was-jconsole-jmx.html</loc>
+    	<lastmod>2017-09-25</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/jenkins-docker-host.html</loc>
+    	<lastmod>2017-09-23</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/nashorn-jdk9.html</loc>
+    	<lastmod>2017-06-14</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/aws-ec2.html</loc>
+    	<lastmod>2017-05-28</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/jdk9-httpclient.html</loc>
+    	<lastmod>2017-05-20</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/wlp-admin-console.html</loc>
+    	<lastmod>2017-05-12</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/docker-jvm-params.html</loc>
+    	<lastmod>2017-05-01</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/strace.html</loc>
+    	<lastmod>2017-05-01</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/docker-rest-api.html</loc>
+    	<lastmod>2017-05-01</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/eclipse-stacktrace.html</loc>
+    	<lastmod>2017-04-12</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/java-debug-flags.html</loc>
+    	<lastmod>2017-03-22</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/inotifywait.html</loc>
+    	<lastmod>2017-03-07</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/jar-list.html</loc>
+    	<lastmod>2017-01-29</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/rsync-tricks.html</loc>
+    	<lastmod>2017-01-20</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/shell-alias-expansion.html</loc>
+    	<lastmod>2017-01-17</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/java-major.html</loc>
+    	<lastmod>2017-01-16</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/ssh-keys.html</loc>
+    	<lastmod>2017-01-13</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/maven-fat-and-thin.html</loc>
+    	<lastmod>2017-01-12</lastmod>
+    </url>
+
+    <url>
+    	<loc>http://dplatz.de/blog/2017/commandline-http-server.html</loc>
+    	<lastmod>2017-01-10</lastmod>
+    </url>
+
+</urlset>
